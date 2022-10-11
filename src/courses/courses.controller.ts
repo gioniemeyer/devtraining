@@ -10,33 +10,32 @@ export class CoursesController {
   findAll(
     @Res() res
   ) {
-    return res.status(200).send('Listagem de cursos');
+    return this.coursesService.findAll();
   };
 
   @Get(':id')
   findOne(
     @Param('id') id: string
   ) {
-    return `Curso #${id}`;
+    return this.coursesService.findOne(id);
   };
 
   @Post()
-  @HttpCode(HttpStatus.NO_CONTENT)
   create(
     @Body('name') body
   ) {
-    return body;
+    return this.coursesService.create(body);
   };
 
   @Patch(':id')
   update(
     @Param('id') id: string, @Body() body
   ) {
-    return `Atualização do curso #${id}`;
+    return this.coursesService.update(id, body);
   };
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `Remoção do curso #${id}`;
+    return this.coursesService.remove(id);
   };
 }
